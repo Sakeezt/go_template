@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  go-template:
+    container_name: go-template
+    image: go-template:sit
+    ports:
+      - '8098:8080'
+    restart: always
+    environment:
+      APP_ENV: sit
+
+networks:
+  default:
+    external:
+      name: touchdevhub-network

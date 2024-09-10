@@ -1,0 +1,28 @@
+### LIST ###
+GET {{host}}/staffs
+Accept: application/json
+
+### CREATE ###
+POST {{host}}/staffs
+Content-Type: application/json
+
+{
+  "name": "John Smith",
+  "tel": "0901234567"
+}
+
+### READ ###
+GET {{host}}/staffs/{{staff_id}}
+Accept: application/json
+
+### UPDATE ###
+PUT {{host}}/staffs/{{staff_id}}
+Content-Type: application/json
+
+{
+  "name": "John Smith 2"
+}
+
+### DELETE ###
+DELETE {{host}}/staffs/{{staff_id}}
+Accept: application/json

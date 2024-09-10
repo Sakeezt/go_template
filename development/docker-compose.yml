@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  mongo:
+    image: mongo:4.0.0
+    container_name: mongo
+    restart: always
+    tty: true
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: touch
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    ports:
+      - 27017:27017
+
+  redis:
+    image: "redis:alpine"
+    container_name: redis
+    hostname: redis
+    command: --requirepass secret
+    restart: always
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    ports:
+      - 6379:6379
+    volumes:
+      - ./volumes/data:/var/lib/redis
+      - ./volumes/conf:/usr/local/etc/redis/redis.conf
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: jaeger
+    environment:
+      - COLLECTOR_ZIPKIN_HTTP_PORT=9411
+    ports:
+      - "6831:6831/udp"
+      - "16686:16686"
